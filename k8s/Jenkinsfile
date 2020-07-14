@@ -1,10 +1,11 @@
 
 pipeline {
+    properties([[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '10', numToKeepStr: '10']]]);
     agent none
         parameters {
         string(name: 'Env', defaultValue: 'dev', description: 'Current environment')
         string(name: 'Environment', defaultValue: 'Development', description: 'Running environment')
-         string(name: 'Eks', defaultValue: 'eks', description: 'eks database')
+        string(name: 'Eks', defaultValue: 'eks', description: 'eks database')
         string(name: 'cicdPath', defaultValue: 'cicd', description: 'CICD directory path')
         
                 }
