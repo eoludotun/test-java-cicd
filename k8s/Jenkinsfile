@@ -1,6 +1,6 @@
 
 pipeline {
-    properties([[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '10', numToKeepStr: '10']]]);
+   // properties([[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '10', numToKeepStr: '10']]]);
     agent none
         parameters {
         string(name: 'Env', defaultValue: 'dev', description: 'Current environment')
