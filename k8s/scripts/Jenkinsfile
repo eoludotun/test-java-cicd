@@ -38,14 +38,11 @@
       
       steps {
         
-                environment {  
-                VERSION = sh(script: 'echo "v"$((${BUILD_NUMBER}%5))', returnStdout: true)  
-                }
         
                     dir(path: "${params.ProjectPath}") {
                       sh 'docker build -t eoludotun/userservice:${params.Env}-${env.BUILD_NUMBER} .'
                     //sh 'ls'
-                      echo "${VERSION}"
+                      sh "docker images"
                       
                      
                 
