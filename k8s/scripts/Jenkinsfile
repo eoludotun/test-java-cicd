@@ -71,8 +71,10 @@
             
             sh 'ls'
             sh 'cat application.yaml'
+              
+            sed s/eoludotun/userservice:00/eoludotun/userservice:$BUILD_NUMBER/g \application.yaml > application.yaml  
             }
-            //sed s/%ENV_NAME%/$production/g \pod_template.yaml > pod_production.yaml
+            //sed s/eoludotun/userservice:00/$production/g \pod_template.yaml > pod_production.yaml
           
              
             
