@@ -50,7 +50,7 @@
                       
                      
                 
-                    sh 'echo "$params.Env-$BUILD_NUMBER"'
+                  ${params.Env}
                      
                 }
       }
