@@ -36,7 +36,8 @@
       
       steps {
                     dir(path: "${params.ProjectPath}") {
-                    sh 'ls'
+                    //sh 'ls'
+                      
                           docker.image("bash").inside() {
                           load "Jenkinsfile_os"
                       }
