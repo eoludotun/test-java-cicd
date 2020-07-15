@@ -59,7 +59,7 @@
              dir('k8s/scripts') {
               
 
-              sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml"
+              
              // sh "sed -i 's|8050|80|' application.yaml"
      
             //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
@@ -85,6 +85,7 @@
             dir('k8s/scripts') {
             sh 'echo "starting Deploy"'
               sh 'cat application.yaml'
+              sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml"
               withCredentials([kubeconfigFile(credentialsId: 'poc-eks-kubernetes', variable: 'KUBECONFIG')]) {
                 
                 echo "*******************************************************************************"
