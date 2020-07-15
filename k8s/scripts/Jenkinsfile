@@ -56,7 +56,7 @@
                 label 'master'
             }
           steps {
-             dir('scripts') {
+             dir('k8s/scripts') {
            
               sh 'pwd'
   
