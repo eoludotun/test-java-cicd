@@ -9,8 +9,9 @@
       
       steps {
                 sh 'ls '
-                cleanWs()
-                sh 'ls'
+                //cleanWs()
+                //sh 'ls'
+              sh "${params.Env}-${env.BUILD_NUMBER}~"
       }
        post {
                 always {
@@ -27,7 +28,7 @@
             }
       
       steps {
-                sh "${params.Env}-${env.BUILD_NUMBER}~"
+                sh 'pwd'
       }
        post {
                 always {
