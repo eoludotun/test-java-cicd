@@ -86,7 +86,7 @@
           steps {
             sh 'ls'
            //sh "sed -i -- '~eoludotun/userservice:00\$~eoludotun/userservice:$BUILD_NUMBER' ./application.yaml"
-            sed "s/eoludotun/userservice:00/eoludotun/userservice:$BUILD_NUMBER/g" application.yaml > application.yaml
+            sed "s/~eoludotun/userservice:00/~eoludotun/userservice:$BUILD_NUMBER/g" application.yaml > application.yaml
               // sh "sed -i -- 's~${params.RepositoryURI}-${params.Env}:${params.ImageTag}-${params.Env}-00\$~${params.RepositoryURI}-${params.Env}:${params.ImageTag}-${params.Env}-${env.BUILD_NUMBER}~g' ./${params.cicdPath}/${params.Env}/deployment-${params.Env}.yaml
           // sh "kubectl --kubeconfig ${KUBERNETES_SECRET} apply -f ./${params.cicdPath}/${params.Env}/deployment-${params.Env}.yaml"
             //sed s/eoludotun/userservice:00/eoludotun/userservice:$BUILD_NUMBER/g \application.yaml 
