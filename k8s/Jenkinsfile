@@ -11,7 +11,7 @@
                 sh 'ls '
                 //cleanWs()
                 //sh 'ls'
-              sh "env.BUILD_NUMBER"
+              sh " echo BUILD_NUMBER"
       }
        post {
                 always {
