@@ -40,11 +40,7 @@
         
         
                     dir(path: "${params.ProjectPath}") {
-                      //sh "docker rmi $(docker images -a -q)"
-                      //sh "docker images"
-                      //sh 'docker build -t eoludotun/userservice .'
-                      sh 'docker rmi -f $(docker images -a -q)'
-                      
+  
                       sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'
                       sh 'ls'
                       
