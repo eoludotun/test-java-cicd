@@ -15,7 +15,7 @@
       }
        post {
                 always {
-                    sh 'echo "Pull source code complete"'
+                    sh "echo Pull source code complete"
                 }
            }
     }
