@@ -68,13 +68,13 @@
           steps {
             dir(path: "${params.ProjectPath}/scripts") {
               sh 'ls'
-              sh 'cat application.yaml'
+             
               
               sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml"
             
             //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
             sh 'ls'
-            //sh 'cat application.yaml'
+             sh 'cat application.yaml'
             
             }
               
