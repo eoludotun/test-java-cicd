@@ -37,10 +37,8 @@
       steps {
 
                dir('k8s') {
-  
-                sh 'pwd'
-                sh 'ls'
-                 //sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'     
+ 
+                 sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'     
                      
                 }
       }
