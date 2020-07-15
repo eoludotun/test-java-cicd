@@ -36,6 +36,7 @@
       
       steps {
                     dir(path: "${params.ProjectPath}") {
+                      sh 'docker build -t jey .'
                     //sh 'ls'
                       
                      
@@ -50,20 +51,7 @@
                 }
            }
          
-    }   
-    
-    
-    
-    stage("docker") {
-      steps {
-    docker.image("bash").inside() {
-        load "Jenkinsfile_os"
-    }
-      }
-}
-    
-    
-          
+    }     
           
 
         stage('Integration Test') {
