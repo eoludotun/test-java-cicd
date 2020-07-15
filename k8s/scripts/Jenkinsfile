@@ -1,0 +1,83 @@
+  
+ pipeline {
+  agent none
+           parameters {
+        string(name: 'Env', defaultValue: 'dev', description: 'Current environment')
+        string(name: 'Environment', defaultValue: 'Development', description: 'Running environment')
+        string(name: 'Eks', defaultValue: 'eks', description: 'eks database')
+        string(name: 'cicdPath', defaultValue: 'cicd', description: 'CICD directory path')
+        string(name: 'ProjectPath', defaultValue: 'user', description: 'Project path')
+                }
+  stages {
+    stage('get code from source code') {
+       agent {
+                label 'master'
+            }
+      
+      steps {
+                sh 'ls '
+                //cleanWs()
+                //sh 'ls'
+              
+      }
+       post {
+                always {
+                    sh "echo Pull source code complete"
+                }
+           }
+    }
+
+          
+          
+       stage('docker build') {
+       agent {
+                label 'master'
+            }
+      
+      steps {
+                    dir(path: "${params.ProjectPath}") {
+                    sh 'ls'
+                    sh "${params.Env}-${env.BUILD_NUMBER}~"
+                     
+                }
+      }
+       post {
+                always {
+                    sh 'echo "Docker build  complete"'
+                }
+           }
+    }       
+          
+          
+
+        stage('Integration Test') {
+          steps {
+            echo 'start integration test '
+            timeout(time: 90) {
+              echo 'start performance testing after timeout'
+            }
+
+          }
+        }
+
+        stage('Performance Test') {
+          steps {
+            echo 'Carryout the q.a test '
+          }
+        }
+
+      }
+    }
+
+    stage('Deploy') {
+      when {
+        branch 'master'
+      }
+      steps {
+        echo 'Deploying the application....'
+        input(message: 'Deploy?', ok: 'Yes')
+      }
+    
+
+  
+}
