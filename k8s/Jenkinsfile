@@ -8,23 +8,23 @@
             }
       
       steps {
-                   sh 'ls -la'
-                   cleanWs()
-                   sh 'ls -la'
+                sh 'ls '
+                cleanWs()
+                sh 'ls'
       }
-                 post {
+       post {
                 always {
                     sh 'echo "Pull source code complete"'
                 }
-            }
+           }
     }
 
-    stage('Test') {
-      parallel {
+    stage('Build docker image') {
+      //parallel {
         stage('Test') {
           steps {
-            echo 'Testing the application...'
-          }
+            sh "${params.Env}-${env.BUILD_NUMBER}~"
+        //  }
         }
 
         stage('Integration Test') {
