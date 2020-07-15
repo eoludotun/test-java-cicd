@@ -21,7 +21,7 @@ pipeline{
       stage('Build docker image') {
          
          steps {
-             sh "echo $((${BUILD_NUMBER}%5))"
+             sh "echo ${params.Env}-${env.BUILD_NUMBER}"
          
            // sh 'docker tag $(docker images -q ${ARTIFACT}:latest) $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:${VERSION}'
 
