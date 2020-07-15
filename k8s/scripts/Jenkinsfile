@@ -66,9 +66,12 @@
                 label 'master'
             }
           steps {
+            dir(path: "${params.ProjectPath}") {
             
             
             sh 'ls'
+            sh 'cat application.yaml'
+            }
             //sed s/%ENV_NAME%/$production/g \pod_template.yaml > pod_production.yaml
           
              
