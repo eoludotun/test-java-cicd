@@ -43,6 +43,7 @@
                       //sh "docker rmi $(docker images -a -q)"
                       //sh "docker images"
                       //sh 'docker build -t eoludotun/userservice .'
+                      sh 'docker rmi -f $(docker images -a -q)'
                       
                       sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'
                       sh 'ls'
@@ -71,9 +72,10 @@
           steps {
             
             sh 'pwd'
-           // timeout(time: 90) {
+            sed s/%ENV_NAME%/$production/g \pod_template.yaml > pod_production.yaml
+          
              
-            //}
+            
 
           }
         }
