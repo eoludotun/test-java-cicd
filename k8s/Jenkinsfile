@@ -27,7 +27,7 @@
             }
       
       steps {
-                sh "${params.Env}-${env.BUILD_NUMBER}~"'
+                sh "${params.Env}-${env.BUILD_NUMBER}~"
       }
        post {
                 always {
