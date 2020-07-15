@@ -6,7 +6,7 @@
         string(name: 'Environment', defaultValue: 'Development', description: 'Running environment')
         string(name: 'Eks', defaultValue: 'eks', description: 'eks database')
         string(name: 'cicdPath', defaultValue: 'cicd', description: 'CICD directory path')
-        string(name: 'ProjectPath', defaultValue: 'k8s', description: 'Project path')
+        string(name: 'NameSpace', defaultValue: 'test-deploy', description: 'kubernetes namespace')
                 }
 
    
@@ -87,8 +87,16 @@
           steps {
             dir(path: "${params.ProjectPath}/scripts") {
             sh 'echo "starting Deploy"'
+              sh 'cat application.yaml'
               withCredentials([kubeconfigFile(credentialsId: 'poc-eks-kubernetes', variable: 'KUBECONFIG')]) {
-               sh "kubectl --kubeconfig $KUBECONFIG apply -f ./application.yaml"
+                
+                echo "*******************************************************************************"
+                sh "kubectl --kubeconfig $KUBECONFIG apply -f ./application.yaml --record"
+                echo "*******************************************************************************"
+                echo "===========================Verify if deployment is successful =================="
+                sh "kubectl --kubeconfig $KUBECONFIG rollout status deployment chat-api -n ${params.NameSpace}"
+                sh "kubectl --kubeconfig $KUBECONFIG get deployments -n ${params.NameSpace} -o wide"
+                echo "*******************************************************************************"
                   
             }
 
