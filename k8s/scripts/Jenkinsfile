@@ -42,7 +42,7 @@
                     dir(path: "${params.ProjectPath}") {
   
                       sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'
-                      sh 'ls'
+             
                       
                      // sh "docker images"
                       
@@ -67,7 +67,7 @@
             }
           steps {
             
-            sh 'pwd'
+            
             sh 'ls'
             //sed s/%ENV_NAME%/$production/g \pod_template.yaml > pod_production.yaml
           
@@ -82,7 +82,7 @@
                 label 'master'
             }
           steps {
-            sh 'ls'
+            sh 'pwd'
           }
         
 
