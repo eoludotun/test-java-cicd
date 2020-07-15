@@ -36,7 +36,7 @@
       
       steps {
 
-               dir(path: "${params.ProjectPath}/scripts") {
+               dir(path: "${params.ProjectPath}") {
   
                 sh 'pwd'
                  //sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'     
