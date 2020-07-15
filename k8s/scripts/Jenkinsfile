@@ -40,7 +40,9 @@
         
         
                     dir(path: "${params.ProjectPath}") {
-                      sh 'docker build -t eoludotun/userservice:${params.Env}-${env.BUILD_NUMBER} .'
+                      sh 'docker build -t eoludotun/userservice .'
+                      sh 'docker images'
+                      //sh 'docker build -t eoludotun/userservice:${params.Env}-${env.BUILD_NUMBER} .'
                     //sh 'ls'
                       sh "docker images"
                       
