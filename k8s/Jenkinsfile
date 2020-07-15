@@ -1,49 +1,59 @@
+pipeline{
+   agent any
 
-pipeline {
-   // properties([[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '10', numToKeepStr: '10']]]);
-    agent none
-        parameters {
-        string(name: 'Env', defaultValue: 'dev', description: 'Current environment')
-        string(name: 'Environment', defaultValue: 'Development', description: 'Running environment')
-        string(name: 'Eks', defaultValue: 'eks', description: 'eks database')
-        string(name: 'cicdPath', defaultValue: 'cicd', description: 'CICD directory path')
-        string(name: 'ProjectPath', defaultValue: 'user', description: 'Project path')
-                }
-        stages {
-                stage('Pull source code') {
-            agent {
-                label 'master'
-            }
-            steps {
-                   sh 'ls -la'
-                   cleanWs()
-                   sh 'ls -la'
-                   
-            }
-            post {
-                always {
-                    sh 'echo "Pull source code complete"'
-                }
-            }
-        }
-        stage('Build docxker image') {
-            agent {
-                   label 'master'
-                    
-                }
-            }
-            
-            steps {
-                dir(path: "${params.ProjectPath}") {
-                    sh 'ls -la'
-                    sh "${params.Env}-${env.BUILD_NUMBER}~"
-                     
-                }
-            }
-            post {
-                always {
-                    sh 'echo "Build complete"'
-                }
-            }
-        }
+   environment {
+      ARTIFACT = "estoque-front-fornecedor-produtos"
+      VERSION = sh(script: 'echo "v"$((${BUILD_NUMBER}%5))', returnStdout: true)
+      WORKSPACE_DEPLOYMENT = "${JENKINS_HOME}/workspace/templates-deployment"
+      TEMPLATES_DIR_NODE = "${WORKSPACE_DEPLOYMENT}/node"
+      TEMPLATES_DIR_ANSIBLE = "${WORKSPACE_DEPLOYMENT}/ansible"
+      DOCKER_REPO = '10.54.0.214:5001/ithappens'
+      BRANCH_NAME = 'master-estoque'
+   }
+   stages {
+      stage('Clone repository') {
+         
 
+            sh "ls -lat"
+         }
+      }
+
+      stage('Build docker image') {
+         
+         steps {
+             sh "echo $((${BUILD_NUMBER}%5))"
+         
+           // sh 'docker tag $(docker images -q ${ARTIFACT}:latest) $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:${VERSION}'
+
+            //sh 'docker tag $(docker images -q ${ARTIFACT}:latest) $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:latest'
+
+
+         }
+      }
+
+      stage('Push docker image') {
+         steps {
+           
+            sh 'pwd'
+           // sh 'docker push $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:${VERSION}'
+           // sh 'docker push $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:latest'
+            //sh 'docker push $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:latest'
+         }
+      }
+
+      stage('Deploy production') {
+        // environment {
+           // ANSIBLE_PLAYBOOK="${TEMPLATES_DIR_ANSIBLE}/${ARTIFACT}.yaml"
+           // GROOVYFILE = "${WORKSPACE_DEPLOYMENT}/configs/node/${ARTIFACT}.groovy"
+         //}
+         steps {
+
+                sh 'echo done'
+          //  load "${GROOVYFILE}"
+            //sh 'printenv'
+           // sh 'cat $ANSIBLE_PLAYBOOK | envsubst > ansible.yml'
+           // sh 'ansible-playbook -i $TEMPLATES_DIR_ANSIBLE/hosts ansible.yml'
+         }
+      }
+   }
+}
