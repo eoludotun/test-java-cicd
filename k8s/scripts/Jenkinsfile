@@ -36,13 +36,13 @@
       
       steps {
 
-               //dir(path: "${params.ProjectPath}") {
+               dir('k8s') {
   
                 sh 'pwd'
                 sh 'ls'
                  //sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'     
                      
-                //}
+                }
       }
        post {
                 always {
