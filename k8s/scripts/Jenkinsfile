@@ -35,11 +35,11 @@
             }
       
       steps {
-                    //dir(path: "${params.ProjectPath}") {
+                    dir(path: "${params.ProjectPath}") {
                     sh 'ls'
                     //sh "${params.Env}-${env.BUILD_NUMBER}~"
                      
-                //}
+                }
       }
        post {
                 always {
