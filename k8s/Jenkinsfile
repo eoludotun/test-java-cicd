@@ -1,6 +1,13 @@
   
  pipeline {
   agent none
+           parameters {
+        string(name: 'Env', defaultValue: 'dev', description: 'Current environment')
+        string(name: 'Environment', defaultValue: 'Development', description: 'Running environment')
+        string(name: 'Eks', defaultValue: 'eks', description: 'eks database')
+        string(name: 'cicdPath', defaultValue: 'cicd', description: 'CICD directory path')
+        string(name: 'ProjectPath', defaultValue: 'user', description: 'Project path')
+                }
   stages {
     stage('get code from source code') {
        agent {
