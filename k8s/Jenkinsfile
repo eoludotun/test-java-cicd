@@ -1,59 +1,48 @@
-pipeline{
-   agent any
-
-   environment {
-      ARTIFACT = "estoque-front-fornecedor-produtos"
-      VERSION = sh(script: 'echo "v"$((${BUILD_NUMBER}%5))', returnStdout: true)
-      WORKSPACE_DEPLOYMENT = "${JENKINS_HOME}/workspace/templates-deployment"
-      TEMPLATES_DIR_NODE = "${WORKSPACE_DEPLOYMENT}/node"
-      TEMPLATES_DIR_ANSIBLE = "${WORKSPACE_DEPLOYMENT}/ansible"
-      DOCKER_REPO = '10.54.0.214:5001/ithappens'
-      BRANCH_NAME = 'master-estoque'
-   }
-   stages {
-      stage('Clone repository') {
-         
-
-            sh "ls -lat"
-         }
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Building the application...'
       }
+    }
 
-      stage('Build docker image') {
-         
-         steps {
-             sh "echo ${params.Env}-${env.BUILD_NUMBER}"
-         
-           // sh 'docker tag $(docker images -q ${ARTIFACT}:latest) $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:${VERSION}'
+    stage('Test') {
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'Testing the application...'
+          }
+        }
 
-            //sh 'docker tag $(docker images -q ${ARTIFACT}:latest) $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:latest'
+        stage('Integration Test') {
+          steps {
+            echo 'start integration test '
+            timeout(time: 90) {
+              echo 'start performance testing after timeout'
+            }
 
+          }
+        }
 
-         }
+        stage('Performance Test') {
+          steps {
+            echo 'Carryout the q.a test '
+          }
+        }
+
       }
+    }
 
-      stage('Push docker image') {
-         steps {
-           
-            sh 'pwd'
-           // sh 'docker push $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:${VERSION}'
-           // sh 'docker push $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:latest'
-            //sh 'docker push $DOCKER_REPO/$ARTIFACT-$BRANCH_NAME:latest'
-         }
+    stage('Deploy') {
+      when {
+        branch 'master'
       }
-
-      stage('Deploy production') {
-        // environment {
-           // ANSIBLE_PLAYBOOK="${TEMPLATES_DIR_ANSIBLE}/${ARTIFACT}.yaml"
-           // GROOVYFILE = "${WORKSPACE_DEPLOYMENT}/configs/node/${ARTIFACT}.groovy"
-         //}
-         steps {
-
-                sh 'echo done'
-          //  load "${GROOVYFILE}"
-            //sh 'printenv'
-           // sh 'cat $ANSIBLE_PLAYBOOK | envsubst > ansible.yml'
-           // sh 'ansible-playbook -i $TEMPLATES_DIR_ANSIBLE/hosts ansible.yml'
-         }
+      steps {
+        echo 'Deploying the application....'
+        input(message: 'Deploy?', ok: 'Yes')
       }
-   }
+    }
 
+  }
+}
