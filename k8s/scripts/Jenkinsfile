@@ -18,7 +18,7 @@
       
       steps {
                 sh 'ls '
-                //cleanWs()
+                cleanWs()
                 //sh 'ls'
               
       }
