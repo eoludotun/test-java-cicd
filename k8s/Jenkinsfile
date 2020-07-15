@@ -2,7 +2,7 @@
  pipeline {
   agent none
   stages {
-    stage('Build') {
+    stage('get code from source code') {
        agent {
                 label 'master'
             }
@@ -12,6 +12,11 @@
                    cleanWs()
                    sh 'ls -la'
       }
+                 post {
+                always {
+                    sh 'echo "Pull source code complete"'
+                }
+            }
     }
 
     stage('Test') {
