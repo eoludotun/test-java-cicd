@@ -72,6 +72,7 @@
             sh 'ls'
             sh 'cat application.yaml'
             sh '$BUILD_NUMBER'  
+            }
               
             //sed s/eoludotun/userservice:00/eoludotun/userservice:$BUILD_NUMBER/g \application.yaml  
             }
@@ -100,7 +101,7 @@
       }
     }
   }
-  }
+  
  }
     
 
