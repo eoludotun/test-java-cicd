@@ -93,7 +93,7 @@
           // sh "kubectl --kubeconfig ${KUBERNETES_SECRET} apply -f ./${params.cicdPath}/${params.Env}/deployment-${params.Env}.yaml"
             //sed s/eoludotun/userservice:00/eoludotun/userservice:$BUILD_NUMBER/g \application.yaml 
             sh 'ls'
-              sh 'cat application.yaml'
+             // sh 'cat application.yaml'
           }
         
 
