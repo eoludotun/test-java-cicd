@@ -72,7 +72,7 @@
           steps {
             
             sh 'pwd'
-            sed s/%ENV_NAME%/$production/g \pod_template.yaml > pod_production.yaml
+            //sed s/%ENV_NAME%/$production/g \pod_template.yaml > pod_production.yaml
           
              
             
