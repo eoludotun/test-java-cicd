@@ -14,10 +14,19 @@ pipeline {
             agent {
                 label 'master'
             }
-            steps {
-                   sh 'ls -la'
+
+
+
+             steps {
+                   
                    cleanWs()
                    sh 'ls -la'
+                   
+            }
+
+            steps {
+                   sh 'ls -la'
+                  
                    sh "echo  ${params.Env}-${env.BUILD_NUMBER}"   
             }
             post {
