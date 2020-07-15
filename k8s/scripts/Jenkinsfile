@@ -39,9 +39,10 @@
       
       steps {
 
-                    dir(path: "${params.ProjectPath}") {
+               dir(path: "${params.ProjectPath}") {
   
-                      sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'     
+                sh 'ls'
+                 //sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'     
                      
                 }
       }
