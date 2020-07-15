@@ -38,9 +38,8 @@
                     dir(path: "${params.ProjectPath}") {
                     //sh 'ls'
                       
-                          docker.image("bash").inside() {
-                          load "Jenkinsfile_os"
-                      }
+                     
+                
                     //sh "${params.Env}-${env.BUILD_NUMBER}~"
                      
                 }
@@ -50,7 +49,18 @@
                     sh 'echo "Docker build  complete"'
                 }
            }
-    }       
+         
+    }   
+    
+    
+    
+    stage("docker") {
+    docker.image("bash").inside() {
+        load "Jenkinsfile_os"
+    }
+}
+    
+    
           
           
 
