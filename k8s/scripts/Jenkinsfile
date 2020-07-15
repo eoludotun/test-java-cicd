@@ -78,10 +78,10 @@
           steps {
             sh 'pwd '
           }
-        }
+        
 
       }
-    }
+    
 
     stage('Deploy') {
       when {
