@@ -57,13 +57,10 @@
             }
           steps {
              dir('k8s/scripts') {
-           
-              sh 'pwd'
-  
-             // sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml"
+
+              sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml"
              // sh "sed -i 's|8050|80|' application.yaml"
-              
-            
+     
             //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
              sh 'ls'
             // sh 'cat application.yaml'
@@ -84,7 +81,7 @@
                 label 'master'
             }
           steps {
-            dir(path: "${params.ProjectPath}/scripts") {
+            dir('k8s/scripts') {
             sh 'echo "starting Deploy"'
               sh 'cat application.yaml'
               withCredentials([kubeconfigFile(credentialsId: 'poc-eks-kubernetes', variable: 'KUBECONFIG')]) {
