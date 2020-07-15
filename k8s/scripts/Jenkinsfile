@@ -1,12 +1,13 @@
   
  pipeline {
   agent none
-           parameters {
+        parameters {
         string(name: 'Env', defaultValue: 'poc', description: 'Current environment')
         string(name: 'Environment', defaultValue: 'Development', description: 'Running environment')
         string(name: 'Eks', defaultValue: 'eks', description: 'eks database')
         string(name: 'cicdPath', defaultValue: 'cicd', description: 'CICD directory path')
         string(name: 'NameSpace', defaultValue: 'test-deploy', description: 'kubernetes namespace')
+        string(name: 'ProjectPath', defaultValue: 'user', description: 'Project path')     
                 }
 
    
