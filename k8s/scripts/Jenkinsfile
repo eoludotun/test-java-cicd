@@ -39,6 +39,7 @@
                dir(path: "${params.ProjectPath}") {
   
                 sh 'pwd'
+                sh 'ls'
                  //sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'     
                      
                 }
