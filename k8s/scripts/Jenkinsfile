@@ -68,7 +68,7 @@
           steps {
             echo 'start integration test '
            // timeout(time: 90) {
-              echo 'start performance testing after timeout'
+             
             //}
 
           }
@@ -76,7 +76,7 @@
 
         stage('Performance Test') {
           steps {
-            sh 'pwd '
+            sh 'ls'
           }
         
 
