@@ -71,7 +71,7 @@
           }
             post {
             always {
-                     sh 'Updating variables  completed"'
+                     sh 'Updating variables  completed'
                    }
            }                           
             
