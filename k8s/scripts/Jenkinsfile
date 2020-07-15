@@ -44,7 +44,7 @@
                       //sh "docker images"
                       //sh 'docker build -t eoludotun/userservice .'
                       
-                      sh 'docker build -t eoludotun/userservice:BUILD_NUMBER .'
+                      sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'
                       sh 'docker images'
                      // sh "docker images"
                       
