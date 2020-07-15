@@ -86,8 +86,8 @@
             }
           steps {
             dir(path: "${params.ProjectPath}/scripts") {
-            sh 'ls'
-            sh "kubectl --kubeconfig $KUBECONFIG apply -f ./application.yaml"
+            sh 'echo "starting Deploy"'
+            //sh "kubectl --kubeconfig $KUBECONFIG apply -f ./application.yaml"
             }
 
           }
