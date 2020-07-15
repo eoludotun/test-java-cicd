@@ -15,10 +15,10 @@ pipeline {
                 label 'master'
             }
             steps {
-                                sh 'ls -la'
-                cleanWs()
-                sh 'ls -la'
-                
+                   sh 'ls -la'
+                   cleanWs()
+                   sh 'ls -la'
+                   sh "echo  ${params.Env}-${env.BUILD_NUMBER}"   
             }
             post {
                 always {
