@@ -65,7 +65,11 @@
           
 
         stage('Integration Test') {
+            agent {
+                label 'master'
+            }
           steps {
+            
             sh 'pwd'
            // timeout(time: 90) {
              
@@ -75,6 +79,9 @@
         }
 
         stage('Performance Test') {
+            agent {
+                label 'master'
+            }
           steps {
             sh 'ls'
           }
