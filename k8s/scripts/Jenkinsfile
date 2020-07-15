@@ -45,7 +45,8 @@
                       //sh 'docker build -t eoludotun/userservice .'
                       
                       sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'
-                      sh 'docker images'
+                      sh 'ls'
+                      
                      // sh "docker images"
                       
                      
@@ -66,9 +67,9 @@
         stage('Integration Test') {
           steps {
             echo 'start integration test '
-            timeout(time: 90) {
+           // timeout(time: 90) {
               echo 'start performance testing after timeout'
-            }
+            //}
 
           }
         }
