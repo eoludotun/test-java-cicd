@@ -10,7 +10,7 @@ pipeline {
         
                 }
     stages {
-            stage('Pull source code and login to ECR') {
+            stage('Pull source code') {
             agent {
                 label 'master'
             }
@@ -23,6 +23,13 @@ pipeline {
                    sh 'ls -la'
                    
             }
+  
+
+           stage('Building docker image') {
+            agent {
+                label 'master'
+            }
+
 
             steps {
                    sh 'ls -la'
