@@ -80,12 +80,15 @@
           }
      
 
-        stage('Performance Test') {
+        stage('Deploy to kubernetes cluster') {
             agent {
                 label 'master'
             }
           steps {
+            dir(path: "${params.ProjectPath}/scripts") {
             sh 'ls'
+            sh "kubectl --kubeconfig $KUBECONFIG apply -f ./application.yaml"
+            }
 
           }
         
