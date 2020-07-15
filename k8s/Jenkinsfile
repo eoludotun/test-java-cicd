@@ -8,7 +8,9 @@
             }
       
       steps {
-        echo 'Building the application...'
+                   sh 'ls -la'
+                   cleanWs()
+                   sh 'ls -la'
       }
     }
 
