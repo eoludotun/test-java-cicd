@@ -8,6 +8,16 @@
         string(name: 'cicdPath', defaultValue: 'cicd', description: 'CICD directory path')
         string(name: 'ProjectPath', defaultValue: 'k8s', description: 'Project path')
                 }
+      environment {
+      ARTIFACT = "estoque-front-fornecedor-produtos"
+      VERSION = sh(script: 'echo "v"$((${BUILD_NUMBER}%5))', returnStdout: true)
+      WORKSPACE_DEPLOYMENT = "${JENKINS_HOME}/workspace/templates-deployment"
+      TEMPLATES_DIR_NODE = "${WORKSPACE_DEPLOYMENT}/node"
+      TEMPLATES_DIR_ANSIBLE = "${WORKSPACE_DEPLOYMENT}/ansible"
+      DOCKER_REPO = '10.54.0.214:5001/ithappens'
+      BRANCH_NAME = 'master-estoque'
+   }
+   
   stages {
     stage('get code from source code') {
        agent {
