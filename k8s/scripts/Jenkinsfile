@@ -9,7 +9,6 @@
         string(name: 'NameSpace', defaultValue: 'test-deploy', description: 'kubernetes namespace')
         string(name: 'ProjectPath', defaultValue: 'user', description: 'Project path')     
                 }
-
    
   stages {
     stage('get code from source code') {
@@ -28,9 +27,7 @@
                     sh "echo Pull source code complete"
                 }
            }
-    }
-
-          
+    }          
           
        stage('docker build') {
        agent {
@@ -41,7 +38,7 @@
 
                dir(path: "${params.ProjectPath}/scripts") {
   
-                sh 'ls'
+                sh 'pwd'
                  //sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'     
                      
                 }
