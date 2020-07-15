@@ -35,8 +35,11 @@
             }
       
       steps {
-                sh 'pwd'
-                sh "${params.Env}-${env.BUILD_NUMBER}~"
+                    dir(path: "${params.ProjectPath}") {
+                    sh 'ls'
+                    sh "${params.Env}-${env.BUILD_NUMBER}~"
+                     
+                }
       }
        post {
                 always {
