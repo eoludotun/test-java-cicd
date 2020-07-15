@@ -89,7 +89,7 @@
             }
           steps {
             sh 'ls'
-           //sh "sed -i -- '~eoludotun/userservice:00\$~eoludotun/userservice:$BUILD_NUMBER' ./application.yaml"
+           //sh "sed -i -- '~eoludotun/userservice:00\$~eoludotun/userservice:$BUILD_NUMBER' application.yaml"
             //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml" 
             //sh "sed -i 's|409628877751.dkr.ecr.us-east-1.amazonaws.com/inappmessaging:32420|${params.ECR_URI}/${params.ImageTag}:${params.Env}-${env.BUILD_NUMBER}|' chat-api-deployment.yaml" 
             //sed "s/~eoludotun/userservice:00/~eoludotun/userservice:$BUILD_NUMBER/g" application.yaml > application.yaml
