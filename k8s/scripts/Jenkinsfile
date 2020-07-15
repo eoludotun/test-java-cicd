@@ -50,7 +50,7 @@
                       
                      
                 
-                    sh 'echo "$BUILD_NUMBER}$BUILD_URL"'
+                    sh 'echo "${params.Env}-$BUILD_NUMBER}"'
                      
                 }
       }
