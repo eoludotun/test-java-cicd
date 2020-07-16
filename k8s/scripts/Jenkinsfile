@@ -11,7 +11,7 @@
                 }
    
   stages {
-    stage('get code from source code') {
+    stage('Pull code from source code') {
        agent {
                 label 'master'
             }    
@@ -84,8 +84,8 @@
                 sh "kubectl --kubeconfig $KUBECONFIG apply -f ./application.yaml --record"
                 echo "*******************************************************************************"
                 echo "===========================Verify if deployment is successful =================="
-               // sh "kubectl --kubeconfig $KUBECONFIG rollout status deployment user-deployment -n ${params.NameSpace}"
-                //sh "kubectl --kubeconfig $KUBECONFIG get deployments -n ${params.NameSpace} -o wide"
+                sh "kubectl --kubeconfig $KUBECONFIG rollout status deployment user-deployment -n ${params.NameSpace}"
+                sh "kubectl --kubeconfig $KUBECONFIG get deployments -n ${params.NameSpace} -o wide"
                 echo "*******************************************************************************"
                   
             }
