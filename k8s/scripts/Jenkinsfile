@@ -57,19 +57,8 @@
                 label 'master'
             }
           steps {
-            // dir('k8s/scripts') {
-              
+            sh 'ls'
 
-              
-             withDockerRegistry(credentialsId: 'docker-reg') {
-               sh 'docker push eoludotun/userservice:$BUILD_NUMBER'
-             }
-
-     
-            //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
-
-            
-           // }
           }
             post {
             always {
@@ -88,6 +77,7 @@
             dir('k8s/scripts') {
             sh 'echo "starting Deploy"'
               sh 'cat application.yaml'
+               //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
               sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml"
               withCredentials([kubeconfigFile(credentialsId: 'poc-eks-kubernetes', variable: 'KUBECONFIG')]) {
                 
