@@ -61,7 +61,10 @@
               
 
               
-             // sh "sed -i 's|8050|80|' application.yaml"
+             withDockerRegistry(credentialsId: 'docker-reg') {
+               sh 'docker push eoludotun/userservice:$BUILD_NUMBER'
+             }
+
      
             //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
              sh 'ls'
