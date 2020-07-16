@@ -48,13 +48,7 @@
             }
 
           steps {
-            sh 'ls'
-
-            //withDockerRegistry(credentialsId: 'registry', url: 'https://hub.docker.com/') {
-             //sh "docker push eoludotun/userservice:$BUILD_NUMBER"
-            //}
-   
-              
+            
           }
             post {
             always {
@@ -75,6 +69,8 @@
               sh 'cat application.yaml'
               echo "*******************************************************************************"
                //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
+              
+              sh "sed -i 's|postgres-credentials|postgres-credentials:$BUILD_NUMBER|' application.yaml"
               sh "sed -i 's|eoludotun/userservice:00|userservice:$BUILD_NUMBER|' application.yaml"
               withCredentials([kubeconfigFile(credentialsId: 'poc-eks-kubernetes', variable: 'KUBECONFIG')]) {
                 
