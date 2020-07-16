@@ -68,10 +68,11 @@
             agent {
                 label 'master'
             }
-          steps {
-               environment {
+             environment {
                 SECRET = credentials('my-fake-password')
             }
+          steps {
+
             dir('k8s/scripts') {
           
                //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
