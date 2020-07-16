@@ -73,7 +73,7 @@
           
                //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
               
-              sh "sed -i 's|POSTGRES_PASSWORD|$my-fake-password:$BUILD_NUMBER|' application.yaml"
+              sh "sed -i 's|POSTGRES_PASSWORD|$my-fake-password|' application.yaml"
               sh "sed -i 's|eoludotun/userservice:00|userservice:$BUILD_NUMBER|' application.yaml"
               withCredentials([kubeconfigFile(credentialsId: 'poc-eks-kubernetes', variable: 'KUBECONFIG')]) {
                 
