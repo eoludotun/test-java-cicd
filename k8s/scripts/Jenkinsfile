@@ -27,9 +27,11 @@
       }          
           
        stage('docker build') {
-       agent {
-                label 'master'
-            }
+  
+         
+            agent {
+                docker { image 'maven:3-alpine' }
+            }     
       
       steps {
           dir('k8s') {
@@ -45,16 +47,17 @@
       }     
 
         stage('Updating variables') {
-           agent {
-                docker { image 'maven:3-alpine' }
+            agent {
+                label 'master'
             }
+
           steps {
-            sh 'mvn --version'
+          
             
-            //withDockerRegistry(credentialsId: 'docker-registry', url: 'https://hub.docker.com') {
-             // sh 'docker push eoludotun/userservice:$BUILD_NUMBER .'
+            withDockerRegistry(credentialsId: 'my-registry', url: 'https://hub.docker.com') {
+             sh 'docker push eoludotun/userservice:$BUILD_NUMBER .'
    
-              //}
+              }
         
 
           }
