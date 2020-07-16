@@ -32,7 +32,7 @@
             }
       steps {
           dir('k8s') {
-              sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'            
+              sh 'docker build -t userservice:$BUILD_NUMBER .'            
                 }
       }
        post {
@@ -74,7 +74,7 @@
               sh 'cat application.yaml'
               echo "*******************************************************************************"
                //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
-              sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml"
+              sh "sed -i 's|eoludotun/userservice:00|userservice:$BUILD_NUMBER|' application.yaml"
               withCredentials([kubeconfigFile(credentialsId: 'poc-eks-kubernetes', variable: 'KUBECONFIG')]) {
                 
                 echo "*******************************************************************************"
