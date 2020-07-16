@@ -42,21 +42,17 @@
            }
          
       }     
-
         stage('Updating variables') {
             agent {
                 label 'master'
             }
 
           steps {
-          
-            
-            withDockerRegistry(credentialsId: 'my-registry', url: 'https://hub.docker.com') {
+
+            withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/?ref=login') {
              sh 'docker push eoludotun/userservice:$BUILD_NUMBER .'
    
               }
-        
-
           }
             post {
             always {
