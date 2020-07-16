@@ -48,6 +48,11 @@
             }
 
           steps {
+              
+              echo "*******************************************************************************"
+              sh 'echo "before changing image in Deploy"'
+              sh 'cat application.yaml'
+              echo "*******************************************************************************"
             
           }
             post {
@@ -63,11 +68,7 @@
             }
           steps {
             dir('k8s/scripts') {
-            
-              echo "*******************************************************************************"
-              sh 'echo "before changing image in Deploy"'
-              sh 'cat application.yaml'
-              echo "*******************************************************************************"
+          
                //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
               
               sh "sed -i 's|postgres-credentials|postgres-credentials:$BUILD_NUMBER|' application.yaml"
