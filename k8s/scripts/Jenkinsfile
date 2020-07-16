@@ -27,12 +27,9 @@
       }          
           
        stage('docker build') {
-  
-         
             agent {
-                docker { image 'maven:3-alpine' }
-            }     
-      
+                label 'master'
+            }
       steps {
           dir('k8s') {
               sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'            
@@ -103,12 +100,11 @@
     
 
     stage('Deploy') {
-      when {
-        branch 'master'
-      }
+      agent {
+                docker { image 'maven:3-alpine' }
+            } 
       steps {
-        echo 'Deploying the application....'
-        input(message: 'Deploy?', ok: 'Yes')
+        sh 'mvn --version'
       }
     }
   }
