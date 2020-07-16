@@ -49,7 +49,7 @@
 
           steps {
 
-            withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/?ref=login') {
+            withDockerRegistry(credentialsId: 'registry', url: 'https://hub.docker.com/?ref=login') {
              sh 'docker push eoludotun/userservice:$BUILD_NUMBER .'
    
               }
