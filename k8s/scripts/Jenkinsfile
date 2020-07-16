@@ -49,10 +49,11 @@
                 label 'master'
             }
           steps {
-            withDockerRegistry(credentialsId: 'docker-registry', url: 'https://hub.docker.com') {
-              sh 'docker push eoludotun/userservice:$BUILD_NUMBER .'
+            sh "cat $docker-registry"
+            //withDockerRegistry(credentialsId: 'docker-registry', url: 'https://hub.docker.com') {
+             // sh 'docker push eoludotun/userservice:$BUILD_NUMBER .'
    
-              }
+              //}
         
 
           }
