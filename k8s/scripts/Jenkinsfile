@@ -49,10 +49,10 @@
 
           steps {
 
-            withDockerRegistry(credentialsId: 'registry', url: 'https://hub.docker.com/?ref=login') {
+            docker login --username=eoludotun --password=$just
              sh 'docker push eoludotun/userservice:$BUILD_NUMBER .'
    
-              }
+              
           }
             post {
             always {
