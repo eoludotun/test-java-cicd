@@ -14,20 +14,17 @@
     stage('get code from source code') {
        agent {
                 label 'master'
-            }
-      
+            }    
       steps {
                 sh 'ls '
-                cleanWs()
-                //sh 'ls'
-              
+                cleanWs()         
       }
        post {
                 always {
                     sh "echo Pull source code complete"
                 }
            }
-    }          
+      }          
           
        stage('docker build') {
        agent {
@@ -35,12 +32,8 @@
             }
       
       steps {
-
-               dir('k8s') {
- 
-                 sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'
-                 sh 'docker login'
-                     
+          dir('k8s') {
+              sh 'docker build -t eoludotun/userservice:$BUILD_NUMBER .'            
                 }
       }
        post {
@@ -49,8 +42,7 @@
                 }
            }
          
-    }     
-          
+      }     
 
         stage('Updating variables') {
             agent {
@@ -67,8 +59,6 @@
            }                           
             
           }
-     
-
         stage('Deploy to kubernetes cluster') {
             agent {
                 label 'master'
