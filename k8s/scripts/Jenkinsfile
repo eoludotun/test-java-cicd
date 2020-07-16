@@ -50,7 +50,7 @@
           steps {
 
             docker login --username=eoludotun --password=$just
-             sh 'docker push eoludotun/userservice:$BUILD_NUMBER .'
+             sh "docker push eoludotun/userservice:$BUILD_NUMBER"
    
               
           }
