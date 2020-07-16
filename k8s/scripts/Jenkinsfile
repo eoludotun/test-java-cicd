@@ -63,7 +63,7 @@
               
              // sh "sed -i 's|8050|80|' application.yaml"
      
-            sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
+            //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
              sh 'ls'
              sh 'cat application.yaml'
             
