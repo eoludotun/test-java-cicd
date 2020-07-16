@@ -49,6 +49,7 @@
                 docker { image 'maven:3-alpine' }
             }
           steps {
+            sh 'mvn --version'
             
             //withDockerRegistry(credentialsId: 'docker-registry', url: 'https://hub.docker.com') {
              // sh 'docker push eoludotun/userservice:$BUILD_NUMBER .'
