@@ -57,7 +57,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: application-auto-scaling
-  namespace: user-service
+  namespace: test-deploy
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
