@@ -80,7 +80,7 @@
               sh "sed -i 's|POSTGRES_PASSWORD|${SECRET}|' application.yaml"
               //sh "sed -i 's|3|${AUTOSCALE}|' application.yaml"
               sh "sed -i 's|eoludotun/userservice:00|userservice:$BUILD_NUMBER|' application.yaml"
-              production-autoscaling
+             
               withCredentials([kubeconfigFile(credentialsId: 'poc-eks-kubernetes', variable: 'KUBECONFIG')]) {
                 
                 echo "*******************************************************************************"
