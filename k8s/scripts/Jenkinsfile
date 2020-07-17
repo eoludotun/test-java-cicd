@@ -70,15 +70,17 @@
             }
              environment {
                 SECRET = credentials('my-fake-password')
+                AUTOSCALE = credentials('prod-autoscaling')
             }
           steps {
 
-            dir('k8s/scripts') {
-          
+            dir('k8s/scripts') {       
                //sh "sed -i 's|eoludotun/userservice:00|eoludotun/userservice:$BUILD_NUMBER|' application.yaml
               
               sh "sed -i 's|POSTGRES_PASSWORD|${SECRET}|' application.yaml"
+              sh "sed -i 's|3|${AUTOSCALE}|' application.yaml"
               sh "sed -i 's|eoludotun/userservice:00|userservice:$BUILD_NUMBER|' application.yaml"
+              production-autoscaling
               withCredentials([kubeconfigFile(credentialsId: 'poc-eks-kubernetes', variable: 'KUBECONFIG')]) {
                 
                 echo "*******************************************************************************"
@@ -94,12 +96,9 @@
             }
 
           }
-          }
-        
-
+           }
       }
     
-
     stage('Deploy') {
       agent {
                 docker { image 'maven:3-alpine' }
