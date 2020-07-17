@@ -51,4 +51,20 @@ spec:
     ports:
     - port: 8050
       targetPort: 8050
+      
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: application-auto-scaling
+  namespace: user-service
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: user-deployment
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 50
+      
         
